@@ -108,7 +108,7 @@ function showNotification(message) {
     setTimeout(() => {
         notification.style.animation = 'slideOut 0.3s ease-out';
         setTimeout(() => {
-            document.body.removeChild(notification);
+            notification.remove();
         }, 300);
     }, 3000);
 }
@@ -125,8 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Check server status on page load
     checkServerStatus();
     
-    // Refresh server status every 30 seconds
-    setInterval(checkServerStatus, 30000);
+    // Refresh server status every 30 seconds, but only when page is visible
+    setInterval(() => {
+        if (!document.hidden) {
+            checkServerStatus();
+        }
+    }, 30000);
 });
 
 // Add animation on scroll
