@@ -53,11 +53,64 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 function copyServerIP() {
     const serverIP = document.getElementById('server-ip').textContent;
     
-    navigator.clipboard.writeText(serverIP).then(() => {
-        alert('Server IP copied to clipboard: ' + serverIP);
-    }).catch(err => {
-        console.error('Failed to copy: ', err);
-    });
+    // Try modern Clipboard API first (requires HTTPS or localhost)
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(serverIP).then(() => {
+            showNotification('Server IP copied to clipboard: ' + serverIP);
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+            showNotification('Failed to copy. Please copy manually: ' + serverIP);
+        });
+    } else {
+        // Fallback for older browsers or non-secure contexts
+        showNotification('Please copy the server IP manually: ' + serverIP);
+    }
+}
+
+// Show temporary notification message
+function showNotification(message) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #2ecc71;
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+        animation: slideIn 0.3s ease-out;
+    `;
+    
+    // Add animation keyframes if not already present
+    if (!document.querySelector('#notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(400px); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(400px); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    document.body.appendChild(notification);
+    
+    // Remove notification after 3 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease-out';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 3000);
 }
 
 // Add click listener to server IP

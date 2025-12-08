@@ -12,10 +12,9 @@ public class HelloCommand implements CommandExecutor {
         if (sender instanceof Player) {
             Player player = (Player) sender;
             player.sendMessage("§aHello, " + player.getName() + "! Welcome to the custom server!");
-            return true;
         } else {
             sender.sendMessage("This command can only be used by players!");
-            return false;
         }
+        return true;
     }
 }
