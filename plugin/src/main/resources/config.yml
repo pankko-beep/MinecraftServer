@@ -1,0 +1,15 @@
+# CustomPlugin Configuration File
+# Edit this file to customize plugin settings
+
+# General Settings
+enabled: true
+
+# Messages
+messages:
+  welcome: "Welcome to the server!"
+  goodbye: "Thanks for playing!"
+
+# Feature Toggles
+features:
+  commands: true
+  events: true

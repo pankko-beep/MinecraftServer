@@ -1,0 +1,18 @@
+name: CustomPlugin
+version: '${project.version}'
+main: com.minecraftserver.customplugin.CustomPlugin
+api-version: '1.20'
+author: MinecraftServer
+description: Custom Minecraft Server Plugin
+
+commands:
+  hello:
+    description: Says hello to the player
+    usage: /<command>
+    permission: customplugin.hello
+    permission-message: You don't have permission to use this command
+
+permissions:
+  customplugin.hello:
+    description: Allows use of the hello command
+    default: true

@@ -1,0 +1,67 @@
+# Maven
+plugin/target/
+plugin/pom.xml.tag
+plugin/pom.xml.releaseBackup
+plugin/pom.xml.versionsBackup
+plugin/pom.xml.next
+plugin/release.properties
+plugin/dependency-reduced-pom.xml
+plugin/buildNumber.properties
+plugin/.mvn/timing.properties
+plugin/.mvn/wrapper/maven-wrapper.jar
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Eclipse
+.project
+.classpath
+.settings/
+.metadata/
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Node.js (if using npm for frontend tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Compiled files
+*.class
+*.jar
+*.war
+*.ear
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
+
+# Server files (if testing locally)
+server/
+minecraft_server*.jar
