@@ -63,8 +63,10 @@ Phase 6: Deployment & Launch
 
 ## Phase 1: Backend Plugin Development
 
-**Duration**: 2-4 weeks  
+**Duration**: 4-5 weeks  
 **Status**: Not Started
+
+**Architecture**: Service-Oriented Design with modular components
 
 ### Milestone 1.1: Maven Project Setup (Week 1)
 
@@ -98,37 +100,104 @@ Phase 6: Deployment & Launch
 - [ ] Event listeners responding to game events
 - [ ] Configuration that can be edited by admins
 
-### Milestone 1.3: Advanced Features (Week 3-4)
+### Milestone 1.3: Service Layer Architecture (Week 3)
 
 #### Tasks:
-- [ ] Implement custom game mechanics (TBD based on server type)
-- [ ] Add player data persistence
-- [ ] Create economy system (optional)
-- [ ] Implement permissions system
-- [ ] Add GUI/inventory menus
+- [ ] Create EconomyService (Vault integration)
+  - Balance management
+  - Transfer system with validations
+  - Freeze/unfreeze economy
+- [ ] Create TeamService (Solar/Lunar system)
+  - Mandatory team selection
+  - Team switching with cost
+  - Player name coloring
+- [ ] Create GuildService (Clan system)
+  - Guild creation/disbanding
+  - Invite/accept/kick members
+  - Guild data persistence
+- [ ] Create PlayerDataService
+  - YAML-based persistence
+  - Auto-load on join, auto-save on quit
+- [ ] Implement data validation across all services
+
+#### Deliverables:
+- [ ] Service layer fully functional
+- [ ] YAML persistence working
+- [ ] Business logic separated from commands
+
+### Milestone 1.4: Database Integration (Week 3-4)
+
+#### Tasks:
+- [ ] Create DatabaseService with HikariCP
+  - Support SQLite and MySQL
+  - Connection pooling
+  - Automatic table creation
+- [ ] Create TransactionService
+  - Record all money transfers
+  - Query transaction history
+  - Export to CSV/JSON
+- [ ] Create AuditService
+  - Log all significant events
+  - Count events by type/time
+  - Generate metrics for panels
+- [ ] Design and create database schema
+  - `transactions` table
+  - `audit_events` table
+  - Proper indexes for performance
+
+#### Deliverables:
+- [ ] Database connectivity (SQLite/MySQL)
+- [ ] Transaction tracking system
+- [ ] Comprehensive audit logging
+
+### Milestone 1.5: Advanced Features (Week 4)
+
+#### Tasks:
+- [ ] Create PanelService (Holographic displays)
+  - Support DecentHolograms and native TextDisplay
+  - GLOBAL, TEAM, GUILD panel types
+  - Auto-refresh with real-time metrics
+  - JSON persistence
+- [ ] Implement command cooldowns and limits
+- [ ] Add GUI/inventory menus (optional)
 - [ ] Create admin commands
-- [ ] Implement data validation
+  - `/econ` - Economy management
+  - `/auditoria` - Event queries
+  - `/_transacoes` - Transaction reports
+  - `/fly` - Toggle flight
+- [ ] Integration hooks for SimpleLogin/AuthMe
 
 #### Deliverables:
 - [ ] Feature-complete plugin
-- [ ] Comprehensive command set
-- [ ] Persistent player data
+- [ ] Holographic panel system
+- [ ] Admin management tools
+- [ ] Authentication hooks
 
-### Milestone 1.4: Testing & Polish (Week 4)
+### Milestone 1.6: Testing & Polish (Week 5)
 
 #### Tasks:
-- [ ] Write unit tests for core functionality
+- [ ] Write unit tests for services
+  - EconomyService tests
+  - TransactionService tests
+  - AuditService tests
 - [ ] Perform integration testing
+  - Test service interactions
+  - Test database operations
+  - Test command workflows
 - [ ] Fix bugs and edge cases
 - [ ] Optimize performance
+  - Database query optimization
+  - HikariCP tuning
+  - Panel refresh optimization
 - [ ] Add comprehensive logging
-- [ ] Document plugin API
-- [ ] Create user guide for server admins
+- [ ] Document plugin API (Javadoc)
+- [ ] Create admin guide (commands, permissions, config)
 
 #### Deliverables:
 - [ ] Tested and stable plugin
-- [ ] Plugin documentation
-- [ ] Test coverage report
+- [ ] Plugin documentation (Javadoc)
+- [ ] Admin configuration guide
+- [ ] Performance benchmarks
 
 ---
 
@@ -192,23 +261,64 @@ Phase 6: Deployment & Launch
 **Status**: Not Started  
 **Dependencies**: Phase 1 complete
 
-### Milestone 3.1: API Project Setup (Week 1)
+### Milestone 3.1: Payment API Setup (Week 1)
 
 #### Tasks:
-- [ ] Choose API technology (Node.js/Spring Boot)
-- [ ] Initialize API project
-- [ ] Set up database (MySQL/MongoDB)
-- [ ] Configure database connection
+- [ ] Initialize Node.js + Express project
+- [ ] Install dependencies (express, dotenv, node-fetch)
+- [ ] Create `.env` configuration file
+  - Mercado Pago access token
+  - Ngrok/public URL
+  - Server port
 - [ ] Set up project structure
-- [ ] Implement basic routing
-- [ ] Set up development environment
+  - `server.js` - Main Express server
+  - `utils/database.js` - JSON file persistence
+  - `database/` - JSON data storage
+  - `logs/` - Operation logs
+- [ ] Implement basic routing and error handling
+- [ ] Set up ngrok for webhook testing
 
 #### Deliverables:
-- [ ] API project structure
-- [ ] Database connected
-- [ ] Basic "Hello World" endpoint working
+- [ ] Node.js server running
+- [ ] Environment configured
+- [ ] Ngrok tunnel active
+- [ ] Basic health check endpoint
 
-### Milestone 3.2: Core API Endpoints (Week 2)
+### Milestone 3.2: Payment Integration (Week 1-2)
+
+#### Tasks:
+- [ ] Implement PIX payment creation endpoint
+  - `POST /criar-pix`
+  - Input: valor, nick, uuid, vip
+  - Generate order UUID
+  - Call Mercado Pago API
+  - Return QR Code and payment data
+- [ ] Implement webhook endpoint
+  - `POST /webhook`
+  - Receive payment notifications
+  - Validate payment status
+  - Anti-duplication check
+  - Process approved payments
+- [ ] Create JSON persistence utilities
+  - `lerArquivo()`, `salvarArquivo()`
+  - `salvarPedido()`, `jaFoiProcessado()`
+  - `marcarComoProcessado()`, `ativarVipArquivo()`
+- [ ] Implement logging system
+  - Webhook events to `logs/webhook.log`
+  - Errors to `logs/errors.log`
+- [ ] Test payment flow end-to-end
+  - Create PIX payment
+  - Simulate webhook notification
+  - Verify data in `vips_ativos.json`
+
+#### Deliverables:
+- [ ] Working payment endpoint
+- [ ] Webhook receiving notifications
+- [ ] Anti-duplication working
+- [ ] VIP data persisted correctly
+- [ ] Comprehensive logging
+
+### Milestone 3.3: Additional API Endpoints (Week 2)
 
 #### Tasks:
 - [ ] Implement player data endpoints
@@ -221,12 +331,12 @@ Phase 6: Deployment & Launch
 - [ ] Implement authentication system
   - POST /api/auth/login
   - POST /api/auth/register
-- [ ] Add request validation
-- [ ] Implement error handling
+- [ ] Add request validation middleware
+- [ ] Implement error handling middleware
 - [ ] Add API documentation (Swagger/OpenAPI)
 
 #### Deliverables:
-- [ ] Working REST API
+- [ ] Complete REST API
 - [ ] API documentation
 - [ ] Postman/Thunder Client collection
 
