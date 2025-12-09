@@ -1,0 +1,14 @@
+# TODO: Configure plugin.yml
+name: YourPluginName
+version: '1.0'
+main: com.yourname.minecraftplugin.Main
+api-version: '1.20'
+description: Custom Minecraft Plugin
+author: YourName
+website: http://yourwebsite.com
+
+commands:
+  # Define commands here
+
+permissions:
+  # Define permissions here
