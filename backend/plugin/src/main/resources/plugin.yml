@@ -1,14 +1,278 @@
-# TODO: Configure plugin.yml
-name: YourPluginName
-version: '1.0'
-main: com.yourname.minecraftplugin.Main
+name: Nexus
+version: '${project.version}'
+main: com.nexus.plugin.NexusPlugin
 api-version: '1.20'
-description: Custom Minecraft Plugin
-author: YourName
-website: http://yourwebsite.com
+load: POSTWORLD
+description: Complete server plugin with Teams, Guilds, Economy, Nexus/Shield, and Dynamic Objectives
+author: Nexus Development Team
+website: https://github.com/pankko-beep/MinecraftServer
+
+# Soft dependencies (plugins that Nexus can integrate with but doesn't require)
+softdepend:
+  - Vault
+  - DecentHolograms
+  - Essentials
+  - EssentialsX
+  - CMI
+  - LuckPerms
+  - SimpleLogin
+  - AuthMe
+  - PlaceholderAPI
+  - ProtocolLib
+  - WorldGuard
+  - spark
 
 commands:
-  # Define commands here
+  # Economy Commands
+  saldo:
+    description: Check your balance
+    usage: /<command>
+    aliases: [balance, bal, money]
+    permission: nexus.saldo
+
+  pagar:
+    description: Transfer money to another player
+    usage: /<command> <player> <amount> [note]
+    aliases: [pay, transfer]
+    permission: nexus.pagar
+
+  historico:
+    description: View your transaction history
+    usage: /<command> [minutes] [limit]
+    aliases: [history, transactions]
+    permission: nexus.historico
+
+  # Team Commands
+  time:
+    description: Team management (Solar/Lunar)
+    usage: /<command> <escolher|trocar|info> [Solar|Lunar]
+    aliases: [team, faction]
+    permission: nexus.time
+
+  # Guild Commands
+  guild:
+    description: Guild management
+    usage: /<command> <criar|convidar|aceitar|sair|expulsar|info|listar|impeachment|votar>
+    aliases: [guilda, g, clan]
+    permission: nexus.guild
+
+  # Nexus Commands (Guild Heart)
+  nexus:
+    description: Manage guild Nexus
+    usage: /<command> <construir|upgrade|info|destruir>
+    aliases: [coração, heart]
+    permission: nexus.nexus
+
+  # Shield Commands
+  escudo:
+    description: Manage guild Shield
+    usage: /<command> <ativar|info|cancelar>
+    aliases: [shield, protecao]
+    permission: nexus.escudo
+
+  # Objective Commands
+  objetivo:
+    description: View and manage dynamic objectives
+    usage: /<command> <listar|info|participar|recompensas>
+    aliases: [quest, objective, obj]
+    permission: nexus.objetivo
+
+  # Panel Commands (Admin)
+  painel:
+    description: Manage holographic panels
+    usage: /<command> <criar|deletar|listar|refresh|info|realign|seed|clean|tp>
+    aliases: [panel, hud]
+    permission: nexus.painel.admin
+
+  # VIP Commands
+  vip:
+    description: VIP rewards and information
+    usage: /<command> <recompensa|info|status>
+    aliases: [premium, rank]
+    permission: nexus.vip
+
+  # Admin Economy Commands
+  econ:
+    description: Economy administration
+    usage: /<command> <freeze|unfreeze|set|give|take|audit|rollback>
+    aliases: [economy, eco]
+    permission: nexus.econ.admin
+
+  # Admin Audit Commands
+  auditoria:
+    description: View audit logs
+    usage: /<command> <listar|export|query> [filters]
+    aliases: [audit, logs]
+    permission: nexus.auditoria.admin
+
+  # Admin Transaction Commands
+  transacoes:
+    description: View transaction logs
+    usage: /<command> <listar|export|query> [filters]
+    aliases: [trans, transactions]
+    permission: nexus.transacoes.admin
+
+  # Admin Flight Command
+  fly:
+    description: Toggle flight mode
+    usage: /<command> [on|off] [player]
+    permission: nexus.fly
+
+  # Market/Shop Commands
+  mercado:
+    description: Buy and sell items
+    usage: /<command> <listar|vender|comprar|cancelar>
+    aliases: [market, shop, loja]
+    permission: nexus.mercado
+
+  # Admin Nexus Management
+  nexusadmin:
+    description: Admin Nexus management
+    usage: /<command> <set|reset|state|upgrade> <guild>
+    permission: nexus.admin.nexus
+
+  # Admin Objective Management  
+  objetivoadmin:
+    description: Admin objective management
+    usage: /<command> <criar|remover|forcar|listar> [type]
+    permission: nexus.admin.objetivo
+
+  # Debug Command
+  nexusdebug:
+    description: Debug information
+    usage: /<command> <info|reload|test>
+    permission: nexus.admin.debug
 
 permissions:
-  # Define permissions here
+  # Player Permissions
+  nexus.saldo:
+    description: Check balance
+    default: true
+
+  nexus.pagar:
+    description: Transfer money
+    default: true
+
+  nexus.historico:
+    description: View transaction history
+    default: true
+
+  nexus.time:
+    description: Manage team membership
+    default: true
+
+  nexus.guild:
+    description: Guild management
+    default: true
+
+  nexus.nexus:
+    description: Manage guild Nexus
+    default: true
+
+  nexus.escudo:
+    description: Manage guild Shield
+    default: true
+
+  nexus.objetivo:
+    description: Participate in objectives
+    default: true
+
+  nexus.vip:
+    description: VIP commands
+    default: true
+
+  nexus.mercado:
+    description: Market access
+    default: true
+
+  # VIP Permissions
+  nexus.vip.guerreiro:
+    description: Guerreiro (Bronze) VIP tier
+    default: false
+
+  nexus.vip.lorde:
+    description: Lorde (Silver) VIP tier
+    default: false
+
+  nexus.vip.mago:
+    description: Mago (Gold) VIP tier
+    default: false
+
+  nexus.vip.nightvision:
+    description: Permanent night vision
+    default: false
+
+  nexus.vip.prioridade:
+    description: Priority queue access
+    default: false
+
+  nexus.vip.particulas:
+    description: Special particle effects
+    default: false
+
+  nexus.vip.area:
+    description: Access to VIP area
+    default: false
+
+  # Admin Permissions
+  nexus.fly:
+    description: Toggle flight
+    default: op
+
+  nexus.econ.admin:
+    description: Economy administration
+    default: op
+
+  nexus.auditoria.admin:
+    description: View audit logs
+    default: op
+
+  nexus.transacoes.admin:
+    description: View all transactions
+    default: op
+
+  nexus.painel.admin:
+    description: Manage panels
+    default: op
+
+  nexus.admin.nexus:
+    description: Admin Nexus management
+    default: op
+
+  nexus.admin.objetivo:
+    description: Admin objective management
+    default: op
+
+  nexus.admin.debug:
+    description: Debug commands
+    default: op
+
+  nexus.admin.*:
+    description: All admin permissions
+    default: op
+    children:
+      nexus.fly: true
+      nexus.econ.admin: true
+      nexus.auditoria.admin: true
+      nexus.transacoes.admin: true
+      nexus.painel.admin: true
+      nexus.admin.nexus: true
+      nexus.admin.objetivo: true
+      nexus.admin.debug: true
+
+  # Wildcard Permission
+  nexus.*:
+    description: All Nexus permissions
+    default: op
+    children:
+      nexus.saldo: true
+      nexus.pagar: true
+      nexus.historico: true
+      nexus.time: true
+      nexus.guild: true
+      nexus.nexus: true
+      nexus.escudo: true
+      nexus.objetivo: true
+      nexus.vip: true
+      nexus.mercado: true
+      nexus.admin.*: true
