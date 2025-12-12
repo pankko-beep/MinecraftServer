@@ -86,7 +86,7 @@ public class NexusPlayer {
     
     @Override
     public String toString() {
-        return String.format("NexusPlayer{uuid=%s, name=%s, team=%s, guild=%s, balance=%.2f}", 
-            uuid, name, team, guildId, balance);
+        return "NexusPlayer{uuid=%s, name=%s, team=%s, guild=%s, balance=%.2f}".formatted(
+               uuid, name, team, guildId, balance);
     }
 }

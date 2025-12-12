@@ -104,7 +104,7 @@ public class AuditEvent {
     
     @Override
     public String toString() {
-        return String.format("AuditEvent{id=%d, player=%s, type=%s, time=%d}", 
-            id, playerUUID, eventType, timestamp);
+        return "AuditEvent{id=%d, player=%s, type=%s, time=%d}".formatted(
+               id, playerUUID, eventType, timestamp);
     }
 }

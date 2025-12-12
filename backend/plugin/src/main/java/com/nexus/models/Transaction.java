@@ -87,7 +87,7 @@ public class Transaction {
     
     @Override
     public String toString() {
-        return String.format("Transaction{id=%d, from=%s, to=%s, amount=%.2f, type=%s}", 
-            id, fromUUID, toUUID, amount, type);
+        return "Transaction{id=%d, from=%s, to=%s, amount=%.2f, type=%s}".formatted(
+               id, fromUUID, toUUID, amount, type);
     }
 }

@@ -114,7 +114,7 @@ public class Shield {
     
     @Override
     public String toString() {
-        return String.format("Shield{guild=%d, state=%s, remaining=%ds}", 
-            guildId, state, getRemainingTimeSeconds());
+        return "Shield{guild=%d, state=%s, remaining=%ds}".formatted(
+               guildId, state, getRemainingTimeSeconds());
     }
 }

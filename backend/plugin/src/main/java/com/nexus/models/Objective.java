@@ -151,7 +151,7 @@ public class Objective {
     
     @Override
     public String toString() {
-        return String.format("Objective{id=%d, name=%s, category=%s, progress=%d/%d (%.0f%%), state=%s}", 
-            id, name, category, progress, goal, getProgressPercentage(), state);
+        return "Objective{id=%d, name=%s, category=%s, progress=%d/%d (%.0f%%), state=%s}".formatted(
+               id, name, category, progress, goal, getProgressPercentage(), state);
     }
 }

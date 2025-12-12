@@ -77,15 +77,15 @@ public class Panel {
     
     public String getLocationString() {
         if (location == null) return "unknown";
-        return String.format("%s,%.1f,%.1f,%.1f", 
-            location.getWorld().getName(), 
-            location.getX(), 
-            location.getY(), 
-            location.getZ());
+        return "%s,%.1f,%.1f,%.1f".formatted(
+               location.getWorld().getName(),
+               location.getX(),
+               location.getY(),
+               location.getZ());
     }
     
     @Override
     public String toString() {
-        return String.format("Panel{id=%d, type=%s, location=%s}", id, type, getLocationString());
+        return "Panel{id=%d, type=%s, location=%s}".formatted(id, type, getLocationString());
     }
 }

@@ -100,8 +100,8 @@ public class DatabaseService {
         String username = plugin.getConfigManager().getMySQLUsername();
         String password = plugin.getConfigManager().getMySQLPassword();
         
-        String jdbcUrl = String.format("jdbc:mysql://%s:%d/%s?useSSL=false&allowPublicKeyRetrieval=true", 
-            host, port, database);
+        String jdbcUrl = "jdbc:mysql://%s:%d/%s?useSSL=false&allowPublicKeyRetrieval=true".formatted(
+               host, port, database);
         
         config.setJdbcUrl(jdbcUrl);
         config.setUsername(username);
@@ -125,7 +125,7 @@ public class DatabaseService {
         config.addDataSourceProperty("elideSetAutoCommits", "true");
         config.addDataSourceProperty("maintainTimeStats", "false");
         
-        plugin.getLogger().info(String.format("Using MySQL database: %s@%s:%d/%s", username, host, port, database));
+        plugin.getLogger().info("Using MySQL database: %s@%s:%d/%s".formatted(username, host, port, database));
     }
     
     /**

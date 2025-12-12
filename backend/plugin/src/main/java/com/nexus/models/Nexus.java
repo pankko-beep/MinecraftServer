@@ -108,7 +108,7 @@ public class Nexus {
     
     @Override
     public String toString() {
-        return String.format("Nexus{guild=%d, level=%d, health=%.0f/%.0f (%.0f%%), state=%s}", 
-            guildId, level, health, maxHealth, getHealthPercentage(), state);
+        return "Nexus{guild=%d, level=%d, health=%.0f/%.0f (%.0f%%), state=%s}".formatted(
+               guildId, level, health, maxHealth, getHealthPercentage(), state);
     }
 }

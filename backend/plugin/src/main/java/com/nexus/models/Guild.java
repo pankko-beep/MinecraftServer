@@ -119,7 +119,7 @@ public class Guild {
     
     @Override
     public String toString() {
-        return String.format("Guild{id=%d, name=%s, team=%s, leader=%s, members=%d/%d, cofre=%.2f}", 
-            id, name, team, leaderUUID, members.size(), memberLimit, cofreBalance);
+        return "Guild{id=%d, name=%s, team=%s, leader=%s, members=%d/%d, cofre=%.2f}".formatted(
+               id, name, team, leaderUUID, members.size(), memberLimit, cofreBalance);
     }
 }

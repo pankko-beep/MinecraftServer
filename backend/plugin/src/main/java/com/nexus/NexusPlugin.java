@@ -107,7 +107,7 @@ public class NexusPlugin extends JavaPlugin {
         
         long loadTime = System.currentTimeMillis() - startTime;
         getLogger().info("========================================");
-        getLogger().info(String.format("Nexus Plugin - Enabled (took %dms)", loadTime));
+        getLogger().info("Nexus Plugin - Enabled (took %dms)".formatted(loadTime));
         getLogger().info("NOTE: Core infrastructure loaded. Services/Commands not yet implemented.");
         getLogger().info("========================================");
     }
@@ -166,7 +166,7 @@ public class NexusPlugin extends JavaPlugin {
         }
         
         vaultEconomy = rsp.getProvider();
-        getLogger().info(String.format("✓ Vault economy integration successful: %s", vaultEconomy.getName()));
+        getLogger().info("✓ Vault economy integration successful: %s".formatted(vaultEconomy.getName()));
         return true;
     }
     

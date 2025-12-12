@@ -67,6 +67,6 @@ public class Team {
     
     @Override
     public String toString() {
-        return String.format("Team{name=%s, points=%d, members=%d}", name, points, totalMembers);
+        return "Team{name=%s, points=%d, members=%d}".formatted(name, points, totalMembers);
     }
 }

@@ -115,8 +115,8 @@ public class MessageUtil {
         
         if (minutes < 60) {
             return remainingSeconds > 0 
-                ? String.format("%dm %ds", minutes, remainingSeconds)
-                : String.format("%dm", minutes);
+                ? "%dm %ds".formatted(minutes, remainingSeconds)
+                : "%dm".formatted(minutes);
         }
         
         long hours = minutes / 60;
@@ -124,16 +124,16 @@ public class MessageUtil {
         
         if (hours < 24) {
             return remainingMinutes > 0
-                ? String.format("%dh %dm", hours, remainingMinutes)
-                : String.format("%dh", hours);
+                ? "%dh %dm".formatted(hours, remainingMinutes)
+                : "%dh".formatted(hours);
         }
         
         long days = hours / 24;
         long remainingHours = hours % 24;
         
         return remainingHours > 0
-            ? String.format("%dd %dh", days, remainingHours)
-            : String.format("%dd", days);
+            ? "%dd %dh".formatted(days, remainingHours)
+            : "%dd".formatted(days);
     }
     
     /**
@@ -250,7 +250,7 @@ public class MessageUtil {
             builder.append(symbol);
         }
         builder.append("§r] ");
-        builder.append(String.format("%.0f%%", percent * 100));
+        builder.append("%.0f%%".formatted(percent * 100));
         
         return builder.toString();
     }
