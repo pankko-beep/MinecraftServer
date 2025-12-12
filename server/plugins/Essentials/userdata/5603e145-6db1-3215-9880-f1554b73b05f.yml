@@ -1,0 +1,30 @@
+teleportenabled: true
+teleportauto: false
+godmode: false
+muted: false
+jailed: false
+ip-address: 127.0.0.1
+afk: false
+socialspy: false
+npc: false
+powertoolsenabled: true
+accepting-pay: true
+baltop-exempt: false
+timestamps:
+  lastteleport: 0
+  lastheal: 0
+  mute: 0
+  jail: 0
+  onlinejail: 0
+  logout: 1765493388810
+  login: 1765487416618
+money: '0'
+last-account-name: morcegosexual
+logoutlocation:
+  world: 330f25e7-5efc-447e-b7b0-ae61801b2ddd
+  world-name: world
+  x: -327.3063918784137
+  y: 103.0
+  z: -194.68200027522158
+  yaw: -156.50384521484375
+  pitch: 24.00048065185547

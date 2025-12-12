@@ -1,0 +1,9 @@
+# Root level gitignore
+*.log
+.env
+.DS_Store
+Thumbs.db
+
+# Ignore specific server files at root
+server/*.jar
+server/eula.txt

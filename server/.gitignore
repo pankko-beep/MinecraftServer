@@ -1,0 +1,24 @@
+# Server files
+*.jar
+eula.txt
+server.properties
+ops.json
+whitelist.json
+banned-players.json
+banned-ips.json
+usercache.json
+
+# World data
+world/
+world_nether/
+world_the_end/
+
+# Logs
+logs/
+*.log
+
+# Backup
+backups/
+
+# Cache
+cache/
