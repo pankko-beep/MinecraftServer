@@ -1,6 +1,6 @@
 name: Nexus
 version: '${project.version}'
-main: com.nexus.plugin.NexusPlugin
+main: com.nexus.NexusPlugin
 api-version: '1.20'
 load: POSTWORLD
 description: Complete server plugin with Teams, Guilds, Economy, Nexus/Shield, and Dynamic Objectives

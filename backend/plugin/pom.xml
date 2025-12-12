@@ -148,11 +148,7 @@
                                     <pattern>com.zaxxer.hikari</pattern>
                                     <shadedPattern>com.nexus.libs.hikari</shadedPattern>
                                 </relocation>
-                                <!-- Relocate SQLite JDBC -->
-                                <relocation>
-                                    <pattern>org.sqlite</pattern>
-                                    <shadedPattern>com.nexus.libs.sqlite</shadedPattern>
-                                </relocation>
+                                <!-- DO NOT relocate SQLite - it has native libraries that can't be relocated -->
                                 <!-- Relocate Gson -->
                                 <relocation>
                                     <pattern>com.google.gson</pattern>
